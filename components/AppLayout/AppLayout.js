@@ -33,21 +33,24 @@ export const AppLayout = ({
             <div className="flex flex-col text-white overflow-hidden">
                 <div className="bg-slate-950 px-5">
                     <Logo />
-                    <Link href="/post/new" className="btn py-3">New Blog</Link>
-                    <Link href="/token-topup" className='block pb-3 pt-4 text-center'>
-                        <FontAwesomeIcon icon={faCoins} className='text-yellow-500' />
-                        <span className='px-1 py-3 text-stone-300/80 hover:text-white transition-all'>
-                            {availableTokens.toLocaleString()} tokens available
-                        </span>
+                    <Link href="/post/new" legacyBehavior>
+                        <a className="btn py-3">New Blog</a>
+                    </Link>
+                    <Link href="/token-topup" legacyBehavior>
+                        <a className='block pb-3 pt-4 text-center'>
+                            <FontAwesomeIcon icon={faCoins} className='text-yellow-500' />
+                            <span className='px-1 py-3 text-stone-300/80 hover:text-white transition-all'>
+                                {availableTokens.toLocaleString()} tokens available
+                            </span>
+                        </a>
                     </Link>
                 </div>
                 <div className="px-5 flex-1 overflow-auto bg-gradient-to-b from-slate-950 to-cyan-950">
                     {posts.map((post) => (
-                        <Link 
-                            key={post._id}
-                            href={`/post/${post._id}`}
-                            className={`py-3 text-lg border border-white/0 hover:bg-white/20 transition-colors block text-ellipsis overflow-hidden whitespace-nowrap my-2 px-2 bg-white/10 cursor-pointer rounded-md ${postId === post._id? "bg-white/20 border-white/50" : ""}`}>
+                        <Link key={post._id} href={`/post/${post._id}`} legacyBehavior>
+                            <a className={`py-3 text-lg border border-white/0 hover:bg-white/20 transition-colors block text-ellipsis overflow-hidden whitespace-nowrap my-2 px-2 bg-white/10 cursor-pointer rounded-md ${postId === post._id? "bg-white/20 border-white/50" : ""}`}>
                                 {post.topic}
+                            </a>
                         </Link>
                     ))}
                     {!noMorePosts && (
