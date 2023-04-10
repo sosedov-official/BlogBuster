@@ -18,7 +18,7 @@ export default function TokenTopup() {
     <div className="text-center">
       <form className='mx-auto my-56 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
         <div className="mt-3">
-          <span className="text-3xl font-heading font-bold" >BlockBuster</span>
+          <span className="text-3xl font-heading font-bold" >BlogBuster</span>
           <span className="font-body text-xl"> is currently in test mode</span>
         </div>
         <p className="mt-5">Follow the link below and enter random info to get 10 tokens for free</p>
