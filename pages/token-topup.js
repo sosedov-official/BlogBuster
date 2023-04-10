@@ -1,9 +1,11 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../components/AppLayout";
 import { getAppProps } from "../utils/getAppProps";
+import { Logo } from "../components/Logo";
 
 export default function TokenTopup() {
-  const handleClick = async () => {
+  const handleClick = async (e) => {
+    e.preventDefault();
     const result = await fetch(`/api/addTokens`, {
       method: "POST",
     });
@@ -13,9 +15,16 @@ export default function TokenTopup() {
   };
 
   return (
-    <div>
-      <h1>This is the Token Top-up page</h1>
-      <button className="btn" onClick={handleClick}>Add tokens</button>
+    <div className="text-center">
+      <form className='mx-auto my-56 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
+        <div className="mt-3">
+          <span className="text-3xl font-heading font-bold" >BlockBuster</span>
+          <span className="font-body text-xl"> is currently in test mode</span>
+        </div>
+        <p className="mt-5">Follow the link below and enter random info to get 10 tokens for free</p>
+        <p className="text-sm text-slate-500">e.g: use 4242 4242 4242 4242 for credit card number</p>
+        <button className="btn mt-10" onClick={(e) => handleClick(e)}>Add tokens</button>
+      </form>
     </div>
   );
 }
