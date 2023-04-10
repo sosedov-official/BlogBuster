@@ -3,12 +3,13 @@ import { AppLayout} from '../../components/AppLayout';
 import clientPromise from '../../lib/mongodb';
 import { ObjectId } from "mongodb";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBurst } from "@fortawesome/free-solid-svg-icons";
+import { faBurst, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { getAppProps } from "../../utils/getAppProps";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import PostsContext from "../../utils/context/postsContext";
 
+/* Function for capitalizing the Keywords */
 function capitalizeWords(string) {
   const exceptionWords = [    "a", "an", "the", "and", "but", "or", "for", "nor", "at", "by", "from",    "in", "into", "of", "off", "on", "onto", "out", "over", "to", "up", "with"  ];
 
@@ -36,13 +37,21 @@ function capitalizeWords(string) {
     .join(" ");
 }
 
-/* const CopyButton = ({ text }) => {
+/* Copy Function */
+const CopyButton = ({ text, postId }) => {
   const [copied, setCopied] = useState(false);
+
+  useEffect(() => {
+    setCopied(false);
+  }, [postId]);
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(text);
       setCopied(true);
+      setTimeout(() => {
+        setCopied(false);
+      }, 2584);
     } catch (err) {
       console.error('Failed to copy text: ', err);
     }
@@ -53,16 +62,21 @@ function capitalizeWords(string) {
       onClick={handleCopy}
       className="text-blue-600 text-sm hover:text-blue-800 transition-colors duration-200"
     >
-      {copied ? 'Copied!' : 'Copy'}
+      {copied ? <strong className="bg-green flex" >Copied!</strong> : <FontAwesomeIcon icon={faCopy} className="bg-green flex text-lg" />}
     </button>
   );
-}; */
+};
+
 
 export default function Post(props) {
   console.log("PROPS: ", props);
   const router = useRouter();
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const {deletePost} = useContext(PostsContext);
+
+  useEffect(() => {
+    setShowDeleteConfirm(false);
+  }, [props.id]);
 
   const handleDeleteConfirm = async () => {
     try{
@@ -87,6 +101,7 @@ export default function Post(props) {
       <div className="max-w-screen-sm mx-auto">
         <div className="title-strip">
           SEO Title and Meta Description
+          <CopyButton text={`${props.title}\n${props.metaDescription}`} postId={props.id} />
         </div>
         <div className="p-4 my-2 border border-stone-200 rounded-md"> 
           <div className="text-blue-600 text-2xl font-bold">{props.title}</div>
@@ -94,6 +109,7 @@ export default function Post(props) {
         </div>
         <div className="title-strip">
           Keywords
+          <CopyButton text={props.keywords} postId={props.id} />
         </div>
         <div className="flex flex-wrap pt-2 gap-1">
           {props.keywords.split(",").map((keyword, i) => (
@@ -104,6 +120,7 @@ export default function Post(props) {
         </div>
         <div className="title-strip">
           Blog Post
+          <CopyButton text={props.postContent} postId={props.id} />
         </div>
       <div dangerouslySetInnerHTML={{__html: props.postContent || ""}} />
       <div className="my-12">

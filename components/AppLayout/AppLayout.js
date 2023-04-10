@@ -7,6 +7,34 @@ import { Logo } from '../Logo';
 import { useContext, useEffect } from 'react';
 import PostsContext from '../../utils/context/postsContext';
 
+/* Function for capitalizing the Keywords */
+function capitalizeWords(string) {
+    const exceptionWords = [    "a", "an", "the", "and", "but", "or", "for", "nor", "at", "by", "from",    "in", "into", "of", "off", "on", "onto", "out", "over", "to", "up", "with"  ];
+  
+    return string
+      .split(" ")
+      .map((word, index) => {
+        const hyphenatedWords = word.split("-");
+  
+        if (hyphenatedWords.length > 1) {
+          word = hyphenatedWords
+            .map((hyphenatedWord) =>
+              hyphenatedWord.charAt(0).toUpperCase() + hyphenatedWord.slice(1)
+            )
+            .join("-");
+        }
+  
+        if (index === 0) {
+          return word.charAt(0).toUpperCase() + word.slice(1);
+        }
+  
+        return exceptionWords.includes(word.toLowerCase())
+          ? word.toLowerCase()
+          : word.charAt(0).toUpperCase() + word.slice(1);
+      })
+      .join(" ");
+  }
+
 export const AppLayout = ({ 
     children, 
     availableTokens, 
@@ -48,12 +76,12 @@ export const AppLayout = ({
                 <div className="px-5 flex-1 overflow-auto bg-gradient-to-b from-slate-950 to-cyan-950">
                     {posts.map((post) => (
                         <Link key={post._id} href={`/post/${post._id}`} legacyBehavior>
-                            <a className={`py-3 text-lg border border-white/0 hover:bg-white/20 transition-colors block text-ellipsis overflow-hidden whitespace-nowrap my-2 px-2 bg-white/10 cursor-pointer rounded-md ${postId === post._id? "bg-white/20 border-white/50" : ""}`}>
-                                {post.topic}
+                            <a className={`py-4 text-base border border-white/0 hover:bg-white/20 transition-colors block text-ellipsis overflow-hidden whitespace-nowrap my-2 px-2 bg-white/10 cursor-pointer rounded-md ${postId === post._id? "bg-white/20 border-white/50" : ""}`}>
+                            {capitalizeWords(post.topic)}
                             </a>
                         </Link>
                     ))}
-                    {!noMorePosts && (
+                    {!noMorePosts && posts.length > 0 && (
                         <div
                             onClick={() => {
                                 getPosts({lastPostDate: posts[posts.length -1].created});

@@ -48,6 +48,6 @@
     @apply disabled:bg-green-200 disabled:cursor-not-allowed bg-green-600 tracking-widest w-full text-white text-2xl text-center font-extrabold cursor-pointer uppercase py-3 rounded-md hover:bg-green-500 transition-all block;
   }
   .title-strip {
-    @apply text-lg font-bold mt-8 p-2 bg-slate-200 rounded-md
+    @apply text-lg font-bold mt-8 p-2 bg-slate-200 rounded-md flex justify-between items-center
   }
 }
