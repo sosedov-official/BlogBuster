@@ -1,7 +1,6 @@
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { AppLayout } from "../components/AppLayout";
 import { getAppProps } from "../utils/getAppProps";
-import { Logo } from "../components/Logo";
 
 export default function TokenTopup() {
   const handleClick = async (e) => {
@@ -16,7 +15,7 @@ export default function TokenTopup() {
 
   return (
     <div className="text-center">
-      <form className='mx-auto my-56 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
+      <form className='mx-auto my-36 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
         <div className="mt-3">
           <span className="text-3xl font-heading font-bold" >BlogBuster</span>
           <span className="font-body text-xl"> is currently in test mode</span>

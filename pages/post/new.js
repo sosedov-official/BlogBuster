@@ -40,10 +40,10 @@ export default function NewPost(props) {
           <FontAwesomeIcon icon={faBurst} className="text-9xl"/>
           <h5 class="tracking-wider" >Generating...</h5>
         </div>
-      )};
+      )}
       {!generating && (
         <div className="w-full h-full flex flex-col overflow-auto">
-          <form onSubmit={handleSubmit} className='mx-auto my-48 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
+          <form onSubmit={handleSubmit} className='mx-auto my-36 w-full max-w-screen-sm bg-slate-100 p-4 rounded-md shadow-xl border border-slate-200 shadow-slate-200'>
             <div>
               <label className="text-xl">
                 <strong>Blog topic:</strong>

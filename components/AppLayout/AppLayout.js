@@ -60,9 +60,10 @@ export const AppLayout = ({
         <div className="grid grid-cols-[377px_1fr] h-screen max-h-screen">
             <div className="flex flex-col text-white overflow-hidden">
                 <div className="bg-slate-950 px-5">
+                    <div className='my-1'></div>
                     <Logo />
                     <Link href="/post/new" legacyBehavior>
-                        <a className="btn py-3">New Blog</a>
+                        <a className="btn py-3 mt-2">New Blog</a>
                     </Link>
                     <Link href="/token-topup" legacyBehavior>
                         <a className='block pb-3 pt-4 text-center'>
