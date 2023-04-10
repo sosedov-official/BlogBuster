@@ -132,6 +132,7 @@ export default withApiAuthRequired(async function handler(req, res) {
     keywords,
     userId: userProfile._id,
     created: new Date(),
+    deleted: false,
   });
 
   console.log("POST: ", post);

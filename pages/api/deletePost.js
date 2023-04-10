@@ -13,10 +13,15 @@ export default withApiAuthRequired(async function handler(req, res){
 
     const {postId} = req.body;
 
-    await db.collection('blogs').deleteOne({
-      userId: userProfile._id,
-      _id: new ObjectId(postId),
-    });
+    await db.collection('blogs').updateOne(
+      {
+        userId: userProfile._id,
+        _id: new ObjectId(postId),
+      },
+      {
+        $set: { deleted: true },
+      }
+    );
 
     res.status(200).json({success: true});
 

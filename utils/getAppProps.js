@@ -19,13 +19,17 @@ export const getAppProps = async (ctx) => {
   const posts = await db
     .collection("blogs")
     .find({
-      userId: user._id
+      userId: user._id,
+      deleted: { $ne: true }
     })
     .limit(8)
     .sort({
     created: -1,
     })
     .toArray();
+
+  console.log("Fetched posts:", posts);
+
 
   return {
     availableTokens: user.availableTokens,

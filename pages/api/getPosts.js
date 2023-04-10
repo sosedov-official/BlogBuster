@@ -14,6 +14,7 @@ export default withApiAuthRequired(async function handler(req, res){
 
     const posts = await db.collection("blogs").find({
       userId: userProfile._id,
+      deleted: { $ne: true },
       created: { [getNewerPosts ? "$gt" : "$lt"]: new Date(lastPostDate)}
     })
     .limit(getNewerPosts ? 0 : 8)

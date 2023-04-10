@@ -60,7 +60,7 @@ export const PostsProvider = ({ children }) => {
       const json = await result.json();
       const postsResult = json.posts || [];
       console.log("POSTS RESULT: ", postsResult);
-      if(postsResult.length < 8){
+      if(postsResult.length < 8 || postsResult.length === 0){
         setNoMorePosts(true);
       }
       dispatch({
