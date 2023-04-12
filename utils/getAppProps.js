@@ -11,7 +11,7 @@ export const getAppProps = async (ctx) => {
 
   if(!user){
     return {
-      availableTokens: 0,
+      availableTokens: 3,
       posts: []
     }; 
   }
