@@ -132,7 +132,7 @@ export default function Post(props) {
             Delete blog
           </button>
         )}
-        {!!showDeleteConfirm && 
+        {!!showDeleteConfirm && (
           <div className="bg-red-200 p-1 text-center rounded-md">
             <p>
               Are you sure? This action is 
@@ -151,7 +151,7 @@ export default function Post(props) {
               </button>
             </div>
           </div>
-        }
+        )}
       </div>
       </div>
     </div>
@@ -164,7 +164,7 @@ Post.getLayout = function getLayout(page, pageProps) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx){
-    const props = await getAppProps(ctx)
+    const props = await getAppProps(ctx);
     const userSession = await getSession(ctx.req, ctx.res);
     const client = await clientPromise;
     const db = client.db("BBData");
@@ -174,7 +174,7 @@ export const getServerSideProps = withPageAuthRequired({
     const post = await db.collection("blogs").findOne({
       _id: new ObjectId(ctx.params.postId),
       userId: user._id
-    })
+    });
 
     if(!post){
       return{

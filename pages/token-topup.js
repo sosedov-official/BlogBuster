@@ -34,7 +34,7 @@ TokenTopup.getLayout = function getLayout(page, pageProps) {
 
 export const getServerSideProps = withPageAuthRequired({
   async getServerSideProps(ctx){
-    const props = await getAppProps(ctx)
+    const props = await getAppProps(ctx);
     return {
       props
     };

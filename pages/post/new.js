@@ -52,7 +52,7 @@ export default function NewPost(props) {
                 placeholder="The Art of Blogging: Boost Your Creativity and Propel Your Business"
                 className="resize-none border border-slate-300 w-full block my-2 px-4 py-2 rounded-md"
                 value={topic} 
-                onChange={e => setTopic(e.target.value)} 
+                onChange={(e) => setTopic(e.target.value)} 
                 maxLength={89}
               />
             </div>
@@ -64,7 +64,7 @@ export default function NewPost(props) {
                 placeholder="SEO for beginners, Blogging Tips" 
                 className="resize-none border border-slate-300 w-full block my-2 px-4 py-2 rounded-md" 
                 value={keywords} 
-                onChange={e => setKeywords(e.target.value)} 
+                onChange={(e) => setKeywords(e.target.value)} 
                 maxLength={89}
               />
               <small className="block mb-5 ml-2">
@@ -76,10 +76,10 @@ export default function NewPost(props) {
             </button>
           </form>
         </div>
-      )};
+      )}
     </div>
   );
-};
+}
 
 NewPost.getLayout = function getLayout(page, pageProps) {
   return <AppLayout {...pageProps}>{page}</AppLayout>;
@@ -95,7 +95,7 @@ export const getServerSideProps = withPageAuthRequired({
           destination: '/token-topup',
           permanent: false,
         }
-      }
+      };
     }
 
     return {
