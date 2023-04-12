@@ -49,7 +49,7 @@ export const AppLayout = ({
     useEffect (() => {
         setPostsFromSSR(postsFromSSR);
         if(postId){
-            const exists = postsFromSSR.find(post => post._id === postId);
+            const exists = postsFromSSR.find((post) => post._id === postId);
             if(!exists){
                 getPosts({getNewerPosts: true, lastPostDate: postCreated});
             }
